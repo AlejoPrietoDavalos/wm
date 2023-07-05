@@ -1,52 +1,105 @@
-# see `grave` key
-#----------Terminal----------
-{super + Return,super + KP_Enter}
+#!/bin/bash
+#--------------------------------------
+#  terminal
+#--------------------------------------
+super + {Return,KP_Enter}
 	gnome-terminal
 
-#----------Program Launcher----------
-super + d
-	rofi -show run
-# Ver como navergar por cada app para hacer focus.
-alt + Tab
-	rofi -show
 
-# make sxhkd reload its configuration files:
+#====================================================================
+# Keys:
+# - super + shift + arrows -> lo manda a la ventana en esa direccion,
+#   y hago focus ahí. Y con ctrl lo mando y me quedo en la ventana.
+#
+#
+# Notas:
+# 1. Poner para que al cambiar de escritorio con super+{q,e} y
+#    pasarse del total de desktop que tiene esa ventana, trunque al
+#    desktop siguiente dentro de esa misma ventana.
+# 2. Revisar la tecla `grave`, es la que está a la izquierda del 1.
+# 3. Ver como navegar por el rofi con el `alt+tab` copadamente.
+# 4. Ver de hacer una variable tipo, `current_window`, y en función 
+#    de esta se basen todas las funciones para operar.
+# 5. Checkear si el close windows con esteroides cierra todo, y como
+#    hacer uno que que cierre todo dentro del `curren_window`.
+#====================================================================
+
+
+########################################
+#                  UI                  #
+########################################
+#--------------------------------------
+#  sxhkd restart
+#--------------------------------------
 super + Escape
 	pkill -USR1 -x sxhkd
 
-######################
-# Shortcuts
-######################
-# bspwm quit~restart
+#--------------------------------------
+#  bspwm quit/restart
+#--------------------------------------
 super + alt + {q,r}
 	bspc {quit,wm -r}
 
-#----------Close/Kill Windows----------
-super + {_,ctrl + shift} + w
-	bspc node -{c,k}
+#--------------------------------------
+#  rofi - program launcher
+#--------------------------------------
+super + d
+	rofi -show run
 
-#----------Brave----------
-super + shift + {_,ctrl} + n
-	brave-browser {_,--incognito}
+#--------------------------------------
+#  rofi - window select
+#--------------------------------------
+alt + Tab
+	rofi -show
 
-#----------Code----------
+#--------------------------------------
+#  audio++/audio--/mute_unmute
+#--------------------------------------
+# OBS: Se puede cambiar Master por Capture para cambiar el microfono.
+XF86Audio{Raise,Lower,Mute}{Volume,Volume,_}
+        amixer -D pulse sset Master {5%+,5%-,1+} {unmute,unmute,toggle}
+
+
+#######################################
+#            Shortcuts Apps           #
+#######################################
+#--------------------------------------
+#  brave
+#--------------------------------------
+super + shift + {_,ctrl} + {Return,KP_Enter}
+	brave-browser {_,--incognito}{}
+
+#--------------------------------------
+#  vscode
+#--------------------------------------
 super + F1
 	code
 
 
-##############
-# focus/swap #
-##############
-#----------Focus Desktop Previous/Next----------
+#######################################
+#           Window Manager            #
+#######################################
+#--------------------------------------
+#  windows_close|kill ~ single/all
+#--------------------------------------
+super + {_,ctrl + shift} + w
+	bspc node -{c,k}
+
+#--------------------------------------
+#  focus_desktop prev/next
+#--------------------------------------
 super + {q,e}
 	bspc desktop -f {prev,next}
 
-#----------Focus Window Arrows----------
+#--------------------------------------
+#  focus_window arrows
+#--------------------------------------
 super + {Left,Down,Up,Right}
 	bspc node -f {west,south,north,east}
 
-
-#----------Focus Desktop by Number----------
+#--------------------------------------
+#  focus desktop by number
+#--------------------------------------
 super + {KP_End,KP_Down,KP_Next,KP_Left,KP_Begin,KP_Right,KP_Home,KP_Up,KP_Prior,KP_Insert}
 	bspc desktop -f '^{1-9,10}'
 super + {1-9,0}
@@ -59,8 +112,9 @@ super + ctrl + shift + {KP_End,KP_Down,KP_Next,KP_Left,KP_Begin,KP_Right,KP_Home
 super + ctrl + shift + {1-9,0}
 	bspc node -d '^{1-9,10}'
 
-
-#----------Send Window and Focus Desktop----------
+#--------------------------------------
+#  Send Window and Focus Desktop
+#--------------------------------------
 # Nota: Luego de la transición sigue apuntando a la misma ventana.
 # Se guarda dentro de `current_window` el ID de la ventana.
 super + shift + {KP_End,KP_Down,KP_Next,KP_Left,KP_Begin,KP_Right,KP_Home,KP_Up,KP_Prior,KP_Insert}
@@ -74,23 +128,14 @@ super + shift + {1-9,0}
 	bspc node -d $n_desktop; \
 	xdotool windowactivate $id_current_win
 
-
-###############
-# move/resize #
-###############
-#----------Resize----------
+#--------------------------------------
+#  resize_window/move_floating_window
+#--------------------------------------
 super + alt + {Left,Down,Up,Right}
 	$HOME/.config/bspwm/bspwm_resize.sh {west,south,north,east}
 
 
-#############
-# Controles #
-#############
 
-# Se puede cambiar Master por Capture para cambiar el microfono.
-#----------Audio----------
-XF86Audio{Raise,Lower,Mute}{Volume,Volume,_}
-        amixer -D pulse sset Master {5%+,5%-,1+} {unmute,unmute,toggle}
 
 
 
