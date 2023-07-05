@@ -96,15 +96,19 @@ super + {_,ctrl + shift} + w
 #--------------------------------------
 super + alt + {Left,Down,Up,Right}
 	$HOME/.config/bspwm/bspwm_resize.sh {west,south,north,east}
+
 #======================================
 #--------------------------------------
 #  focus_desktop prev/next
 #--------------------------------------
 super + {q,e}
-	bspc desktop -f {prev,next}
+	bspc desktop -f {prev,next}.local
+
+#--------------------------------------
+#  send_window_focus prev/next
+#--------------------------------------
 super + shift + {q,e}
-	bspc query -D -d > asd.txt
-#bspc window -d '^$(bspc query -D -d focused --names).next.local'
+	bspc node -d {prev,next}.local --follow
 
 #--------------------------------------
 #  focus_desktop by number
@@ -117,6 +121,7 @@ super + {1-9,0,KP_End,KP_Down,KP_Next,KP_Left,KP_Begin,KP_Right,KP_Home,KP_Up,KP
 #--------------------------------------
 super + {Left,Down,Up,Right}
 	bspc node -f {west,south,north,east}
+
 #======================================
 #--------------------------------------
 #  send_window && focus_desktop by number
@@ -131,15 +136,15 @@ super + shift + {1-9,0,KP_End,KP_Down,KP_Next,KP_Left,KP_Begin,KP_Right,KP_Home,
 #  send_window_to_monitor_focus by arrows
 #--------------------------------------
 super + shift + {Left,Down,Up,Right}
-       dir={west,south,north,east}; \
-       bspc node -m "$dir" --follow
+	dir={west,south,north,east}; \
+	bspc node -m "$dir" --follow
 
 #--------------------------------------
 #  switch_window_current_win by arrows
 #--------------------------------------
 super + ctrl + {Left,Down,Up,Right}
-        dir={west,south,north,east}; \
-        bspc node -s "$dir.local" --follow
+	dir={west,south,north,east}; \
+	bspc node -s "$dir.local" --follow
 
 #======================================
 #--------------------------------------
