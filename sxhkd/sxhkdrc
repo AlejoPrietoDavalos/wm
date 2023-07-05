@@ -171,7 +171,7 @@ super + {o,i}
 ###############
 #----------Resize----------
 super + alt + {Left,Down,Up,Right}
-	~/scripts/wm/bspwm_resize.sh {west,south,north,east}
+	$HOME/.config/bspwm/bspwm_resize.sh {west,south,north,east}
 
 
 
