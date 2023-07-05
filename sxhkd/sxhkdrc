@@ -80,7 +80,7 @@ super + F1
 #           Window Manager            #
 #######################################
 #--------------------------------------
-#  windows_close|kill ~ single/all
+#  close_windows|kill ~ single/all  #close_desktops?
 #--------------------------------------
 super + {_,ctrl + shift} + w
 	bspc node -{c,k}
@@ -92,21 +92,22 @@ super + {q,e}
 	bspc desktop -f {prev,next}
 
 #--------------------------------------
-#  focus_window arrows
+#  focus_window arrows	
 #--------------------------------------
 super + {Left,Down,Up,Right}
 	bspc node -f {west,south,north,east}
 
 #--------------------------------------
-#  focus desktop by number
+#  focus_desktop by number
 #--------------------------------------
 super + {KP_End,KP_Down,KP_Next,KP_Left,KP_Begin,KP_Right,KP_Home,KP_Up,KP_Prior,KP_Insert}
 	bspc desktop -f '^{1-9,10}'
 super + {1-9,0}
 	bspc desktop -f '^{1-9,10}'
 
-
-#----------Send Window to Desktop----------
+#--------------------------------------
+#  send_window to desktop
+#--------------------------------------
 super + ctrl + shift + {KP_End,KP_Down,KP_Next,KP_Left,KP_Begin,KP_Right,KP_Home,KP_Up,KP_Prior,KP_Insert}
 	bspc node -d '^{1-9,10}'
 super + ctrl + shift + {1-9,0}
