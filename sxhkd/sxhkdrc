@@ -104,7 +104,7 @@ super + {q,e}
 	bspc desktop -f {prev,next}
 super + shift + {q,e}
 	bspc query -D -d > asd.txt
-#bspc widow -d '^$(bspc query -D -d focused --names).next.local'
+#bspc window -d '^$(bspc query -D -d focused --names).next.local'
 
 #--------------------------------------
 #  focus_desktop by number
@@ -159,6 +159,17 @@ super + ctrl + shift + {Left,Down,Up,Right}
 #super + @space
 #	seleccionar todas las ventanas en un desktop.
 #	probar purgearlas, moverlas etc...
+
+
+
+
+
+
+
+
+
+
+
 
 
 
