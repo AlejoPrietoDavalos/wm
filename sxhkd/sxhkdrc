@@ -100,10 +100,8 @@ super + {q,e}
 #--------------------------------------
 #  focus_desktop by number
 #--------------------------------------
-super + {KP_End,KP_Down,KP_Next,KP_Left,KP_Begin,KP_Right,KP_Home,KP_Up,KP_Prior,KP_Insert}
-	bspc desktop -f '^{1-9,10}'
-super + {1-9,0}
-	bspc desktop -f '^{1-9,10}'
+super + {1-9,0,KP_End,KP_Down,KP_Next,KP_Left,KP_Begin,KP_Right,KP_Home,KP_Up,KP_Prior,KP_Insert}
+	bspc desktop -f '^{1-9,10,1-9,10}'
 
 #--------------------------------------
 #  focus_window arrows
@@ -134,30 +132,27 @@ super + ctrl + shift + {1-9,0}
 #--------------------------------------
 #  send_window && focus_desktop
 #--------------------------------------
-# Nota: Luego de la transición sigue apuntando a la misma ventana.
-# Se guarda dentro de `current_window` el ID de la ventana.
+super + shift + {1-9,0,KP_End,KP_Down,KP_Next,KP_Left,KP_Begin,KP_Right,KP_Home,KP_Up,KP_Prior,KP_Insert}
+	n_desktop='^{1-9,10,1-9,10}'; \
+	id_current_win=$(xdotool getwindowfocus); \
+	bspc node -d $n_desktop; \
+	xdotool windowactivate $id_current_win
+
+#super + @space
+#	seleccionar todas las ventanas en un desktop.
+#	probar purgearlas, moverlas etc...
+
+
+
+
+
+
+
+
+
+#----------REVISAR ESTO----------
 #current_win=$(bspc query --desktops --desktop focused -m focused); \
 #bspc desktop -f "$current_win"
-super + shift + {KP_End,KP_Down,KP_Next,KP_Left,KP_Begin,KP_Right,KP_Home,KP_Up,KP_Prior,KP_Insert}
-	n_desktop='^{1-9,10}'; \
-	id_current_win=$(xdotool getwindowfocus); \
-	bspc node -d $n_desktop; \
-	xdotool windowactivate $id_current_win
-super + shift + {1-9,0}
-	n_desktop='^{1-9,10}'; \
-	id_current_win=$(xdotool getwindowfocus); \
-	bspc node -d $n_desktop; \
-	xdotool windowactivate $id_current_win
-
-
-
-
-
-
-
-
-
-
 #----------REVISAR ESTO----------
 #super + shift + {i,o,p}
 #    rofi -show {run,drun,window} -theme $HOME/rofi-collection/nord/nord.rasi
