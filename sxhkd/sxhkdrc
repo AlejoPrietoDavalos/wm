@@ -128,7 +128,7 @@ super + {Left,Down,Up,Right}
 #  - send_window && focus_desktop by number
 #  - send_window_to_desktop by number
 #--------------------------------------
-super + shift + {1-9,0,KP_End,KP_Down,KP_Next,KP_Left,KP_Begin,KP_Right,KP_Home,KP_Prior,KP_Insert} + {_,ctrl}
+super + shift + {1-9,0,KP_End,KP_Down,KP_Next,KP_Left,KP_Begin,KP_Right,KP_Home,KP_Up,KP_Prior,KP_Insert} + {_,ctrl}
 	bspc node -d '^{1-9,10,1-9,10}' {--follow,_}
 
 #--------------------------------------
