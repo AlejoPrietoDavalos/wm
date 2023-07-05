@@ -90,12 +90,15 @@ super + {_,ctrl + shift} + w
 #--------------------------------------
 super + alt + {Left,Down,Up,Right}
 	$HOME/.config/bspwm/bspwm_resize.sh {west,south,north,east}
-
+#======================================
 #--------------------------------------
 #  focus_desktop prev/next
 #--------------------------------------
 super + {q,e}
 	bspc desktop -f {prev,next}
+super + shift + {q,e}
+	bspc query -D -d > asd.txt
+#bspc window -d '^$(bspc query -D -d focused --names).next.local'
 
 #--------------------------------------
 #  focus_desktop by number
@@ -104,39 +107,41 @@ super + {1-9,0,KP_End,KP_Down,KP_Next,KP_Left,KP_Begin,KP_Right,KP_Home,KP_Up,KP
 	bspc desktop -f '^{1-9,10,1-9,10}'
 
 #--------------------------------------
-#  focus_window arrows
+#  focus_window by arrows
 #--------------------------------------
 super + {Left,Down,Up,Right}
 	bspc node -f {west,south,north,east}
-
-
-
-
+#======================================
 #--------------------------------------
-#  send_window_to_desktop arrows
-#--------------------------------------
-super + shift + {Left,Down,Up,Right}
-	dir={west,south,north,east}; \
-	bspc node -s "$dir.local" --follow \
-	    || bspc node -m "$dir" --follow
-
-
-#--------------------------------------
-#  send_window_to_desktop by number
-#--------------------------------------
-super + ctrl + shift + {KP_End,KP_Down,KP_Next,KP_Left,KP_Begin,KP_Right,KP_Home,KP_Up,KP_Prior,KP_Insert}
-	bspc node -d '^{1-9,10}'
-super + ctrl + shift + {1-9,0}
-	bspc node -d '^{1-9,10}'
-
-#--------------------------------------
-#  send_window && focus_desktop
+#  send_window && focus_desktop by number
 #--------------------------------------
 super + shift + {1-9,0,KP_End,KP_Down,KP_Next,KP_Left,KP_Begin,KP_Right,KP_Home,KP_Up,KP_Prior,KP_Insert}
 	n_desktop='^{1-9,10,1-9,10}'; \
 	id_current_win=$(xdotool getwindowfocus); \
 	bspc node -d $n_desktop; \
 	xdotool windowactivate $id_current_win
+
+#--------------------------------------
+#  send|switch_window_to_monitor_focus by arrows
+#--------------------------------------
+super + shift + {Left,Down,Up,Right}
+	dir={west,south,north,east}; \
+	bspc node -s "$dir.local" --follow \
+	    || bspc node -m "$dir" --follow
+#======================================
+#--------------------------------------
+#  send_window_to_desktop by number
+#--------------------------------------
+super + ctrl + shift + {1-9,0,KP_End,KP_Down,KP_Next,KP_Left,KP_Begin,KP_Right,KP_Home,KP_Up,KP_Prior,KP_Insert}
+	bspc node -d '^{1-9,10,1-9,10}'
+
+#--------------------------------------
+#  send_window_to_monitor by arrows
+#--------------------------------------
+super + ctrl + shift + {Left,Down,Up,Right}
+	direction={west,south,north,east}; \
+	bspc node -m "$direction"
+
 
 #super + @space
 #	seleccionar todas las ventanas en un desktop.
@@ -151,7 +156,7 @@ super + shift + {1-9,0,KP_End,KP_Down,KP_Next,KP_Left,KP_Begin,KP_Right,KP_Home,
 
 
 #----------REVISAR ESTO----------
-#current_win=$(bspc query --desktops --desktop focused -m focused); \
+#current_win=$(bspc query -D --d focused -m focused); \
 #bspc desktop -f "$current_win"
 #----------REVISAR ESTO----------
 #super + shift + {i,o,p}
