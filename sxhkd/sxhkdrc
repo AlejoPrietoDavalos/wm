@@ -18,7 +18,7 @@ super + {Return,KP_Enter}
 #    desktop siguiente dentro de esa misma ventana.
 # 2. Revisar la tecla `grave`, es la que está a la izquierda del 1.
 # 3. Ver como navegar por el rofi con el `alt+tab` copadamente.
-# 4. Ver de hacer una variable tipo, `current_window`, y en función 
+# 4. Ver de hacer una variable tipo, `current_window`, y en función
 #    de esta se basen todas las funciones para operar.
 # 5. Checkear si el close windows con esteroides cierra todo, y como
 #    hacer uno que que cierre todo dentro del `curren_window`.
@@ -28,33 +28,39 @@ super + {Return,KP_Enter}
 ########################################
 #                  UI                  #
 ########################################
-#--------------------------------------
+#---------------------------------------
+#  shutdown
+#---------------------------------------
+super + ctrl + alt + {_,shift} + Escape
+	shutdown {-r,_} now
+
+#---------------------------------------
 #  sxhkd restart
-#--------------------------------------
+#---------------------------------------
 super + Escape
 	pkill -USR1 -x sxhkd
 
-#--------------------------------------
+#---------------------------------------
 #  bspwm quit/restart
-#--------------------------------------
+#---------------------------------------
 super + alt + {q,r}
 	bspc {quit,wm -r}
 
-#--------------------------------------
+#---------------------------------------
 #  rofi - program launcher
-#--------------------------------------
+#---------------------------------------
 super + d
 	rofi -show run
 
-#--------------------------------------
+#---------------------------------------
 #  rofi - window select
-#--------------------------------------
+#---------------------------------------
 alt + Tab
 	rofi -show
 
-#--------------------------------------
+#---------------------------------------
 #  audio++/audio--/mute_unmute
-#--------------------------------------
+#---------------------------------------
 # OBS: Se puede cambiar Master por Capture para cambiar el microfono.
 XF86Audio{Raise,Lower,Mute}{Volume,Volume,_}
         amixer -D pulse sset Master {5%+,5%-,1+} {unmute,unmute,toggle}
@@ -98,7 +104,7 @@ super + {q,e}
 	bspc desktop -f {prev,next}
 super + shift + {q,e}
 	bspc query -D -d > asd.txt
-#bspc window -d '^$(bspc query -D -d focused --names).next.local'
+#bspc widow -d '^$(bspc query -D -d focused --names).next.local'
 
 #--------------------------------------
 #  focus_desktop by number
@@ -122,12 +128,19 @@ super + shift + {1-9,0,KP_End,KP_Down,KP_Next,KP_Left,KP_Begin,KP_Right,KP_Home,
 	xdotool windowactivate $id_current_win
 
 #--------------------------------------
-#  send|switch_window_to_monitor_focus by arrows
+#  send_window_to_monitor_focus by arrows
 #--------------------------------------
 super + shift + {Left,Down,Up,Right}
-	dir={west,south,north,east}; \
-	bspc node -s "$dir.local" --follow \
-	    || bspc node -m "$dir" --follow
+       dir={west,south,north,east}; \
+       bspc node -m "$dir" --follow
+
+#--------------------------------------
+#  switch_window_current_win by arrows
+#--------------------------------------
+super + ctrl + {Left,Down,Up,Right}
+        dir={west,south,north,east}; \
+        bspc node -s "$dir.local" --follow
+
 #======================================
 #--------------------------------------
 #  send_window_to_desktop by number
