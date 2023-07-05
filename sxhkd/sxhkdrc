@@ -1,20 +1,14 @@
-{west,south,north,east}# see `grave` key
-
+# see `grave` key
 #----------Terminal----------
 {super + Return,super + KP_Enter}
 	gnome-terminal
 
-# program launcher
+#----------Program Launcher----------
 super + d
 	rofi -show run
 # Ver como navergar por cada app para hacer focus.
 alt + Tab
 	rofi -show
-
-#------ REVISAR ESTO
-#super + shift + {i,o,p}
-#    rofi -show {run,drun,window} -theme $HOME/rofi-collection/nord/nord.rasi
-
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -38,57 +32,6 @@ super + shift + {_,ctrl} + n
 #----------Code----------
 super + F1
 	code
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Ver si esto hace desaparecer la hoja o simplementa la oculta.
-# alternate between the tiled and monocle layout
-#super + m
-#	bspc desktop -l next
-
-# send the newest marked node to the newest preselected node
-#super + y
-#	bspc node newest.marked.local -n newest.!automatic.local
-
-# Esto está copado, ver como funciona
-# swap the current node and the biggest window
-#super + g
-#	bspc node -s biggest.window
-
-
-
-
-
-
 
 
 ##############
@@ -132,50 +75,12 @@ super + shift + {1-9,0}
 	xdotool windowactivate $id_current_win
 
 
-
-
-
-
-
-
-
-# focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
-
-# focus the next/previous window in the current desktop
-super + {_,shift} + c
-	bspc node -f {next,prev}.local.!hidden.window
-
-# focus the next/previous desktop in the current monitor
-super + bracket{left,right}
-	bspc desktop -f {prev,next}.local
-
-# focus the last node/desktop
-super + {grave,Tab}
-	bspc {node,desktop} -f last
-
-# focus the older or newer node in the focus history
-super + {o,i}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
-	bspc wm -h on
-
-
-
-
-
-
 ###############
 # move/resize #
 ###############
 #----------Resize----------
 super + alt + {Left,Down,Up,Right}
 	$HOME/.config/bspwm/bspwm_resize.sh {west,south,north,east}
-
-
-
-
 
 
 #############
@@ -192,19 +97,45 @@ XF86Audio{Raise,Lower,Mute}{Volume,Volume,_}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+#----------REVISAR ESTO----------
+#super + shift + {i,o,p}
+#    rofi -show {run,drun,window} -theme $HOME/rofi-collection/nord/nord.rasi
 #-------------basura------------------
+# Ver si esto hace desaparecer la hoja o simplementa la oculta.
+# alternate between the tiled and monocle layout
+#super + m
+#	bspc desktop -l next
+
+# send the newest marked node to the newest preselected node
+#super + y
+#	bspc node newest.marked.local -n newest.!automatic.local
+
+# Esto está copado, ver como funciona
+# swap the current node and the biggest window
+#super + g
+#	bspc node -s biggest.window
+# focus the node for the given path jump
+#super + {p,b,comma,period}
+#	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous window in the current desktop
+#super + {_,shift} + c
+#	bspc node -f {next,prev}.local.!hidden.window
+
+# focus the next/previous desktop in the current monitor
+#super + bracket{left,right}
+#	bspc desktop -f {prev,next}.local
+
+# focus the last node/desktop
+#super + {grave,Tab}
+#	bspc {node,desktop} -f last
+
+# focus the older or newer node in the focus history
+#super + {o,i}
+#	bspc wm -h off; \
+#	bspc node {older,newer} -f; \
+#	bspc wm -h on
+
 
 ###############
 # move/resize #
