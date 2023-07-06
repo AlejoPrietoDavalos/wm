@@ -86,10 +86,16 @@ super + F1
 #           Window Manager            #
 #######################################
 #--------------------------------------
-#  - close_windows|kill ~ single/all  #close_desktops?
+#  - close_window
 #--------------------------------------
-super + {_,ctrl + shift} + w
-	bspc node -{c,k}
+super + w
+	bspc node -c
+
+#--------------------------------------
+#  - close_all_window_focused_desktop
+#--------------------------------------
+super + shift + ctrl + w
+	bspc node @/ -c
 
 #--------------------------------------
 #  - resize_window/move_floating_window
