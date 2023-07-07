@@ -6,6 +6,7 @@ super + {Return,KP_Enter}
 	gnome-terminal
 
 
+
 #====================================================================
 # Keys:
 # - super + shift + arrows -> lo manda a la ventana en esa direccion,
@@ -29,22 +30,35 @@ super + {Return,KP_Enter}
 #                  UI                  #
 ########################################
 #---------------------------------------
+#  - reboot
 #  - shutdown
 #---------------------------------------
 super + ctrl + alt + {_,shift} + Escape
 	shutdown {-r,_} now
 
+#  - lock_session
+#----> ver como usar betterlockscreen
+#super + Escape
+#	loginctl lock-session; \
+#	loginctl switch-to-greeter
+
+#---------------------------------------
+#  - kill_session
+#---------------------------------------
+super + ctrl + shift + Escape
+	bspc quit
+
+#---------------------------------------
+#  - bspwm restart
+#---------------------------------------
+super + alt + r
+        bspc wm -r
+
 #---------------------------------------
 #  - sxhkd restart
 #---------------------------------------
-super + Escape
-	pkill -USR1 -x sxhkd
-
-#---------------------------------------
-#  - bspwm quit/restart
-#---------------------------------------
-super + alt + {q,r}
-	bspc {quit,wm -r}
+#super + Escape
+#	pkill -USR1 -x sxhkd
 
 #---------------------------------------
 #  - rofi - program launcher
@@ -55,15 +69,23 @@ super + d
 #---------------------------------------
 #  - rofi - window select
 #---------------------------------------
-alt + Tab
-	rofi -show
+#alt + Tab
+#	rofi -show
 
 #---------------------------------------
 #  - audio++/audio--/mute_unmute
 #---------------------------------------
 # OBS: Se puede cambiar Master por Capture para cambiar el microfono.
 XF86Audio{Raise,Lower,Mute}{Volume,Volume,_}
-        amixer -D pulse sset Master {5%+,5%-,1+} {unmute,unmute,toggle}
+	amixer -D pulse sset Master {5%+,5%-,1+} {unmute,unmute,toggle}
+
+#--------------------------------------
+#  - screenshot
+#--------------------------------------
+Print
+	date_now=$(date --iso=ns); \
+	echo "~/images/screenshots/screen_$(date_now).png" > ~/asd.txt
+#	scrot -s "~/images/screenshots/screen_$(date_now).png"
 
 
 #######################################
@@ -72,7 +94,7 @@ XF86Audio{Raise,Lower,Mute}{Volume,Volume,_}
 #--------------------------------------
 #  - brave
 #--------------------------------------
-super + shift + {_,ctrl} + {Return,KP_Enter}
+super + ctrl + {_,shift} + {Return,KP_Enter}
 	brave-browser {_,--incognito}{}
 
 #--------------------------------------
@@ -156,7 +178,6 @@ super + ctrl + {Left,Down,Up,Right}
 #super + @space
 #	seleccionar todas las ventanas en un desktop.
 #	probar purgearlas, moverlas etc...
-
 
 
 
