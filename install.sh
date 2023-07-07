@@ -4,3 +4,6 @@ chmod +x $main_dir/bspwm/*
 chmod +x $main_dir/sxhkd/*
 chmod +x $main_dir/polybar/launch.sh
 cp -r $main_dir/{bspwm,sxhkd,polybar} ~/.config
+
+# Reiniciamos bspwm
+bspc wm -r
