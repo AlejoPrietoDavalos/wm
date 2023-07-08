@@ -57,8 +57,8 @@ super + alt + r
 #---------------------------------------
 #  - sxhkd restart
 #---------------------------------------
-#super + Escape
-#	pkill -USR1 -x sxhkd
+super + alt + Escape
+	pkill -USR1 -x sxhkd
 
 #---------------------------------------
 #  - rofi - program launcher
@@ -82,9 +82,9 @@ XF86Audio{Raise,Lower,Mute}{Volume,Volume,_}
 #--------------------------------------
 #  - screenshot
 #--------------------------------------
-Print
-	date_now=$(date --iso=ns); \
-	echo "~/images/screenshots/screen_$(date_now).png" > ~/asd.txt
+#Print
+#	date_now=$(date --iso=ns); \
+#	echo "~/images/screenshots/screen_$(date_now).png" > ~/asd.txt
 #	scrot -s "~/images/screenshots/screen_$(date_now).png"
 
 
@@ -109,15 +109,10 @@ super + F1
 #######################################
 #--------------------------------------
 #  - close_window
-#--------------------------------------
-super + w
-	bspc node -c
-
-#--------------------------------------
 #  - close_all_window_focused_desktop
 #--------------------------------------
-super + shift + ctrl + w
-	bspc node @/ -c
+super + shift + {_,ctrl} + w
+	bspc node {_,@/} -c
 
 #--------------------------------------
 #  - resize_window/move_floating_window
