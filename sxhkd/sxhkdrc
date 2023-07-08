@@ -111,7 +111,7 @@ super + F1
 #  - close_window
 #  - close_all_window_focused_desktop
 #--------------------------------------
-super + shift + {_,ctrl} + w
+super + {_,ctrl + shift} + w
 	bspc node {_,@/} -c
 
 #--------------------------------------
