@@ -62,10 +62,7 @@ bspc rule -a Screenkey manage=off
 
 
 # Wallpapers (Elige el primero aleatoriamente).
-# ---> Poner el path de wallpapers a través de una variable de entorno.
-random_wallpaper=$(ls -d  ~/images/wallpapers/* | shuf -n 1)
-feh --bg-fill $random_wallpaper
-
+$HOME/.config/bspwm/set_random_wallpaper.sh
 
 # Launch polybar
 $HOME/.config/polybar/launch.sh
