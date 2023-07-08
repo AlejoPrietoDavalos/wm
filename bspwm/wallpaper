@@ -1,0 +1,20 @@
+#!/bin/bash
+# ---> Poner el path de wallpapers a través de una variable de entorno.
+
+
+
+
+
+
+# Setea un wallpaper aleatorio de entre los disponibles.
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -r) # Setea un wallpaper aleatorio de entre los disponibles.
+            random_wallpaper=$(ls -d  ~/images/wallpapers/* | shuf -n 1);
+            feh --bg-fill $random_wallpaper;;
+        -g) echo "la g";;
+        *) echo "Invalid flag"; exit 1;;
+    esac
+    shift
+done
+
