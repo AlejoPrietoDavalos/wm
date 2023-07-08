@@ -4,9 +4,6 @@
 
 
 
-
-
-# Setea un wallpaper aleatorio de entre los disponibles.
 while [[ $# -gt 0 ]]; do
     case $1 in
         -r) # Setea un wallpaper aleatorio de entre los disponibles.

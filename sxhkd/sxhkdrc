@@ -118,7 +118,7 @@ super + {_,ctrl + shift} + w
 #  - resize_window/move_floating_window
 #--------------------------------------
 super + alt + {Left,Down,Up,Right}
-	$HOME/.config/bspwm/bspwm_resize.sh {west,south,north,east}
+	$HOME/.config/bspwm/resize_win {west,south,north,east}
 
 #======================================
 #--------------------------------------
