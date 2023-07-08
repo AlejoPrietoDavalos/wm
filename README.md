@@ -12,6 +12,10 @@ sudo apt-get install scrot
 
 
 # TODO
+- Poner un boton en la polybar para cambiar el wallpaper, que al darle click salga una lista desplegable con las imagenes dentro de $WALLPAPERS y te deje elegir una, llame al script setear wallpaper.
+
+
+
 
 ~~~markdown
 Aquí tienes algunas configuraciones adicionales que podrían mejorar la estética de BSPWM:
@@ -34,4 +38,6 @@ bspc config borderless_floating_nodes <true|false>: Elimina los bordes de las ve
 
 Recuerda que estos son solo ejemplos de configuraciones que pueden mejorar la estética de BSPWM. Para obtener más detalles sobre cada opción y personalizar aún más tu experiencia, te recomendaría consultar la documentación oficial de BSPWM o buscar recursos adicionales sobre personalización de BSPWM en línea.
 ~~~
+
+
 
