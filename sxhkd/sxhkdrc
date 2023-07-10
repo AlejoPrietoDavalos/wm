@@ -81,10 +81,11 @@ XF86Audio{Raise,Lower,Mute}{Volume,Volume,_}
 
 #--------------------------------------
 #  - screenshot
-#  BUG: Hace bien todos los prints, salvo el de la pantalla completa.
+# Nota: No me deja bindear super + shift + alt + Print.
+# Parece que sxhkd flashea cuando bindeas Print, ver...
 #--------------------------------------
-Print + {_,super,super+shift+alt} + {_,ctrl}
-	$HOME/.config/bspwm/screenshot {--bbox,--win,--all} {_,--save}
+Print + {_,super,super + alt} + {_,ctrl}
+	$HOME/.config/bspwm/screenshot {--bbox,--win,-m} {_,--save}
 
 
 
