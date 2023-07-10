@@ -81,11 +81,11 @@ XF86Audio{Raise,Lower,Mute}{Volume,Volume,_}
 
 #--------------------------------------
 #  - screenshot
+#  BUG: Hace bien todos los prints, salvo el de la pantalla completa.
 #--------------------------------------
-#Print
-#	date_now=$(date --iso=ns); \
-#	echo "~/images/screenshots/screen_$(date_now).png" > ~/asd.txt
-#	scrot -s "~/images/screenshots/screen_$(date_now).png"
+Print + {_,super,super+shift+alt} + {_,ctrl}
+	$HOME/.config/bspwm/screenshot {--bbox,--win,--all} {_,--save}
+
 
 
 #######################################
