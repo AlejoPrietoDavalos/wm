@@ -3,7 +3,7 @@
 #  - terminal
 #--------------------------------------
 super + {Return,KP_Enter}
-	gnome-terminal
+	kitty
 
 
 
