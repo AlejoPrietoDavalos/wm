@@ -69,7 +69,7 @@ $HOME/.config/polybar/launch.sh
 
 
 # PICOM
-picom --config $HOME/.config/picom/picom.conf
+picom --config $HOME/.config/picom/picom.conf &
 
 
 # Ver q hace esto.

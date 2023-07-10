@@ -6,5 +6,6 @@ chmod +x $main_dir/polybar/launch.sh
 chmod +x $main_dir/picom/*
 cp -r $main_dir/{bspwm,sxhkd,polybar,picom} ~/.config
 
-# Reiniciamos bspwm
+# Reiniciamos bspwm y sxhkd
 bspc wm -r
+pkill -USR1 -x sxhkd
