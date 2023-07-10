@@ -8,6 +8,9 @@ sudo apt-get install x11-xserver-utils
 
 # scrot (screenshots)
 sudo apt-get install scrot
+
+# xclip (portapapeles)
+sudo apt install xclip
 ~~~
 
 
