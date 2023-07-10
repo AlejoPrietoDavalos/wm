@@ -52,7 +52,7 @@ super + ctrl + shift + Escape
 #  - bspwm restart
 #---------------------------------------
 super + alt + r
-        bspc wm -r
+	bspc wm -r
 
 #---------------------------------------
 #  - sxhkd restart
