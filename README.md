@@ -44,3 +44,28 @@ Recuerda que estos son solo ejemplos de configuraciones que pueden mejorar la es
 
 
 
+
+~~~bash
+#! /bin/bash
+
+
+
+#IFS="," read -r idx path <<< "$(tail -n +2 prueba.csv | head -n 1)"
+#echo $idx
+#echo $path
+#feh --bg-fill "$path"
+
+
+function asd(){ echo "hola $1"; echo "segundo echo"; }
+asd
+
+
+# Ver como funciona esto, es una iteracion en el csv.
+#while IFS="," read -r i hola chau
+#do
+#  echo "hola: $hola";
+#  echo "chau: $chau"
+#done < <(tail -n +2 prueba.csv)
+~~~
+
+
