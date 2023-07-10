@@ -16,9 +16,10 @@ case "$1" in
 esac
 
 
+# Se guarda la imagen o elimina.
 if [[ $2 == "--save" ]]; then
-    name_saved=$SCREENSHOTS/$(date '+%d_%m_%Y_%H:%M:%S-%2N.png')
+    name_saved=$SCREENSHOTS/$(date '+%d_%m_%Y_%H-%M-%S-%2N.png')
     rename_tmp $name_saved
+else
+    delete_tmp; exit 0
 fi
-
-delete_tmp; exit 0
