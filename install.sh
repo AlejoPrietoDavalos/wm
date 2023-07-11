@@ -10,3 +10,4 @@ cp -r $main_dir/{bspwm,sxhkd,polybar,picom,kitty} ~/.config
 # Reiniciamos bspwm y sxhkd
 bspc wm -r
 pkill -USR1 -x sxhkd
+pkill picom
