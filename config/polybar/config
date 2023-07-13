@@ -32,7 +32,7 @@ line-color = #f00
 #module-margin-left = 1
 #----------Espaciado entre modulos----------
 module-margin-left = 1
-module-margin-right = 2
+module-margin-right = 10
 
 font-0 = fixed:pixelsize=10;1
 font-1 = FontAwesome:style=Regular:size=12:antialias=true;2
@@ -235,22 +235,18 @@ type = internal/i3
 # ;label-disconnected = %ifname% disconnected
 # ;label-disconnected-foreground = ${colors.foreground-alt}
 # 
-# [module/date]
-# type = internal/date
-# interval = 5
-# 
-# date =
-# date-alt = " %d-%m-%Y"
-# 
-# time = %H:%M
-# time-alt = %H:%M:%S
-# 
-# format-prefix = 
-# format-prefix-foreground = ${colors.foreground-alt}
-# format-underline = #0a6cf5
-# 
-# label = %date% %time%
-# 
+[module/date]
+type = internal/date
+interval = 5
+date-alt = "%d-%m-%Y"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix-foreground = ${colors.foreground-alt}
+label = %date% %time%
+
+
 [module/pulseaudio]
 type = internal/pulseaudio
 
