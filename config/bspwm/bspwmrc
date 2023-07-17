@@ -63,5 +63,8 @@ $HOME/.config/polybar/launch.sh
 picom --config $HOME/.config/picom/picom.conf &
 
 
+setxkbmap -layout latam
+
+
 # Ver q hace esto.
 #xsetroot -cursor_name left_ptr &
