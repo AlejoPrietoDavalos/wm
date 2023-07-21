@@ -69,3 +69,14 @@ asd
 ~~~
 
 
+
+### Para ver xdg-settings
+
+- default-file-manager
+- default-terminal-emulator
+- default-calender
+- default-music-player
+- default-video-player
+- default-image-viewer
+- default-document-viewer
+
