@@ -62,15 +62,10 @@ super + alt + Escape
 
 #---------------------------------------
 #  - rofi - program launcher
-#---------------------------------------
-super + d
-	rofi -show run
-
-#---------------------------------------
 #  - rofi - window select
 #---------------------------------------
-#alt + Tab
-#	rofi -show
+super + {d,Tab}
+	rofi -show {run,_}
 
 #---------------------------------------
 #  - audio++/audio--/mute_unmute
