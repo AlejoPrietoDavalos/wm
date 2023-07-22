@@ -63,7 +63,7 @@ bspc rule -a Screenkey manage=off
 
 
 # Wallpapers (Elige el primero aleatoriamente).
-$HOME/.config/bspwm/wallpaper -r
+wallpaper -r
 
 # Launch polybar
 $HOME/.config/polybar/launch.sh

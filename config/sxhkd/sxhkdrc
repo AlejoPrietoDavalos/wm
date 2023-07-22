@@ -80,7 +80,7 @@ XF86Audio{Raise,Lower,Mute}{Volume,Volume,_}
 # Parece que sxhkd flashea cuando bindeas Print, ver...
 #--------------------------------------
 Print + {_,super,super + alt} + {_,ctrl}
-    $HOME/.config/bspwm/screenshot {--bbox,--win,-m} {_,--save}
+    screenshot {--bbox,--win,-m} {_,--save}
 
 
 
