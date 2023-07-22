@@ -3,7 +3,7 @@
 #  - terminal
 #--------------------------------------
 super + {Return,KP_Enter}
-	kitty
+    kitty
 
 
 
@@ -34,7 +34,7 @@ super + {Return,KP_Enter}
 #  - shutdown
 #---------------------------------------
 super + ctrl + alt + {_,shift} + Escape
-	shutdown {-r,_} now
+    shutdown {-r,_} now
 
 #  - lock_session
 #----> ver como usar betterlockscreen
@@ -46,33 +46,33 @@ super + ctrl + alt + {_,shift} + Escape
 #  - kill_session
 #---------------------------------------
 super + ctrl + shift + Escape
-	bspc quit
+    bspc quit
 
 #---------------------------------------
 #  - bspwm restart
 #---------------------------------------
 super + alt + r
-	bspc wm -r
+    bspc wm -r
 
 #---------------------------------------
 #  - sxhkd restart
 #---------------------------------------
 super + alt + Escape
-	pkill -USR1 -x sxhkd
+    pkill -USR1 -x sxhkd
 
 #---------------------------------------
 #  - rofi - program launcher
 #  - rofi - window select
 #---------------------------------------
 super + {d,Tab}
-	rofi -show {run,_}
+    rofi -show {run,_}
 
 #---------------------------------------
 #  - audio++/audio--/mute_unmute
 #---------------------------------------
 # OBS: Se puede cambiar Master por Capture para cambiar el microfono.
 XF86Audio{Raise,Lower,Mute}{Volume,Volume,_}
-	amixer -D pulse sset Master {5%+,5%-,1+} {unmute,unmute,toggle}
+    amixer -D pulse sset Master {5%+,5%-,1+} {unmute,unmute,toggle}
 
 #--------------------------------------
 #  - screenshot
@@ -80,7 +80,7 @@ XF86Audio{Raise,Lower,Mute}{Volume,Volume,_}
 # Parece que sxhkd flashea cuando bindeas Print, ver...
 #--------------------------------------
 Print + {_,super,super + alt} + {_,ctrl}
-	$HOME/.config/bspwm/screenshot {--bbox,--win,-m} {_,--save}
+    $HOME/.config/bspwm/screenshot {--bbox,--win,-m} {_,--save}
 
 
 
@@ -91,13 +91,13 @@ Print + {_,super,super + alt} + {_,ctrl}
 #  - brave
 #--------------------------------------
 super + ctrl + {_,shift} + {Return,KP_Enter}
-	brave-browser {_,--incognito}{_,_}
+    brave-browser {_,--incognito}{_,_}
 
 #--------------------------------------
 #  - vscode
 #--------------------------------------
 super + F1
-	code
+    code
 
 
 #######################################
@@ -108,39 +108,39 @@ super + F1
 #  - close_all_window_focused_desktop
 #--------------------------------------
 super + {_,ctrl + shift} + w
-	bspc node {_,@/} -c
+    bspc node {_,@/} -c
 
 #--------------------------------------
 #  - resize_window/move_floating_window
 #--------------------------------------
 super + alt + {Left,Down,Up,Right}
-	$HOME/.config/bspwm/resize_win {west,south,north,east}
+    $HOME/.config/bspwm/resize_win {west,south,north,east}
 
 #======================================
 #--------------------------------------
 #  - focus_desktop prev/next
 #--------------------------------------
 super + {q,e}
-	bspc desktop -f {prev,next}.local
+    bspc desktop -f {prev,next}.local
 
 #--------------------------------------
 #  - send_window_focus prev/next
 #  - send_window prev/next
 #--------------------------------------
 super + shift + {q,e} + {_,ctrl}
-	bspc node -d {prev,next}.local {--follow,_}
+    bspc node -d {prev,next}.local {--follow,_}
 
 #--------------------------------------
 #  - focus_desktop by number
 #--------------------------------------
 super + {1-9,0,KP_End,KP_Down,KP_Next,KP_Left,KP_Begin,KP_Right,KP_Home,KP_Up,KP_Prior,KP_Insert}
-	bspc desktop -f '^{1-9,10,1-9,10}'
+    bspc desktop -f '^{1-9,10,1-9,10}'
 
 #--------------------------------------
 #  - focus_window by arrows
 #--------------------------------------
 super + {Left,Down,Up,Right}
-	bspc node -f {west,south,north,east}
+    bspc node -f {west,south,north,east}
 
 #======================================
 #--------------------------------------
@@ -148,20 +148,20 @@ super + {Left,Down,Up,Right}
 #  - send_window_to_desktop by number
 #--------------------------------------
 super + shift + {1-9,0,KP_End,KP_Down,KP_Next,KP_Left,KP_Begin,KP_Right,KP_Home,KP_Up,KP_Prior,KP_Insert} + {_,ctrl}
-	bspc node -d '^{1-9,10,1-9,10}' {--follow,_}
+    bspc node -d '^{1-9,10,1-9,10}' {--follow,_}
 
 #--------------------------------------
 #  - send_window_to_monitor_focus by arrows
 #  - send_window_to_monitor by arrows
 #--------------------------------------
 super + shift + {Left,Down,Up,Right} + {_,ctrl}
-	bspc node -m {west,south,north,east} {--follow,_}
+    bspc node -m {west,south,north,east} {--follow,_}
 
 #--------------------------------------
 #  - switch_window_current_win by arrows
 #--------------------------------------
 super + ctrl + {Left,Down,Up,Right}
-	bspc node -s {west,south,north,east}.local --follow
+    bspc node -s {west,south,north,east}.local --follow
 #======================================
 
 
