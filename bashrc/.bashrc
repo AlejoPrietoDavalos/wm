@@ -6,13 +6,13 @@ path_bashrc=$path_wm/bashrc
 #----------Commands----------
 export PATH=$PATH:$path_wm/commands
 
-#----------Profile Exports----------
+#---------------------------------------------------
+#  - profile
+#  - alias
+#  - secret
+#---------------------------------------------------
 source $path_bashrc/.profile
-
-#----------Alias----------
 source $path_bashrc/.alias
-
-#----------Secret----------
 source $path_wm/.secret/.tkn
 
 
