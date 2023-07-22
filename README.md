@@ -1,4 +1,13 @@
-# first_commit
+### links:
+- https://www.nerdfonts.com/ | https://www.nerdfonts.com/cheat-sheet
+- https://www.flaticon.es/
+- https://github.com/google/material-design-icons
+- https://spicetify.app/
+- polybar_icons: https://www.youtube.com/watch?v=nVSUiRUgspQ
+- https://github.com/polybar/polybar/wiki/Module:-i3#additional-formatting
+
+
+
 
 
 # Instalar
