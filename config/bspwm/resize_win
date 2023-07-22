@@ -1,4 +1,4 @@
-#usr/bin/env dash
+#!/bin/bash
 
 # Comprueba si ID único de la ventana seleccionada corresponde a una ventana flotante.
 # De ser flotante, sale un exit 0.
