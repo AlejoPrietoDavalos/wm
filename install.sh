@@ -6,6 +6,10 @@ for path_conf_i in $(ls -d $path_config/*); do
     chmod +x $path_conf_i/*
     cp -r $path_conf_i/* $HOME/.config/$conf_name
 done
+
+# Se copia el .bashrc
+cp bashrc/.bashrc $HOME
+
 # Reiniciamos bspwm y sxhkd
 bspc wm -r
 pkill -USR1 -x sxhkd

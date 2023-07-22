@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# copy "insertar string a copiar"
+
+clipboard_from_string() { echo -n "$1" | xclip -sel clip; }
+clipboard_from_readable() { cat "$1" | head -c -1 | xclip -sel clip; }
+
+
+# Se revisa que se tenga un y solo un argumento.
+if [[ $# != 1 ]]; then
+    echo "Se requiere un único argumento a copiar."
+    exit 1
+fi
+
+
+# Verificar si el primer argumento es un archivo legible
+if [[ -r "$1" ]]; then
+    if [[ -f "$1" ]]; then
+        clipboard_from_readable "$1"
+        exit 0
+    else
+        echo "El argumento proporcionado no es un archivo regular."
+        exit 1
+    fi
+# Verificar si es un texto no nulo.
+elif [[ -n "$1" ]]; then
+    clipboard_from_string "$1"
+    exit 0
+else
+    echo "Argumento inválido."
+    exit 1
+fi
