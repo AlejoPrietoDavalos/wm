@@ -1,0 +1,4 @@
+#!/bin/bash
+
+kitty $HOME/documentos/python &
+kitty $HOME/.data_terra &
