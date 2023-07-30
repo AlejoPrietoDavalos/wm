@@ -89,3 +89,4 @@ asd
 - default-image-viewer
 - default-document-viewer
 
+material_icons

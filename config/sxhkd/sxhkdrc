@@ -4,6 +4,8 @@
 #--------------------------------------
 super + {Return,KP_Enter}
     kitty
+super + ctrl + alt + shift + {Return,KP_Enter}
+    open_terminal
 
 
 
