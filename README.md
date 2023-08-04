@@ -90,3 +90,8 @@ asd
 - default-document-viewer
 
 material_icons
+sudo apt install iwd
+
+https://stackoverflow.com/questions/8884188/how-to-read-and-write-ini-file-with-python3
+recordar el .secret
+Hacer la interfaz de linea de comandos para el wifi, bluethoot y toda esa gilada
