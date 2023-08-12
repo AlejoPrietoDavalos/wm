@@ -1,0 +1,45 @@
+#!/bin/bash
+
+NAME_CONTROLADOR_WIFI="wlo1"
+
+# Conecta al wifi con usuario y contraseña.
+function connect { sudo nmcli d wifi connect "$1" password "$2"; }
+function disconnect { nmcli d disconnect $1; }
+function list_connections { nmcli d; }
+function list_wifi { sudo iwlist wlan0 scan | grep ESSID; }
+
+
+
+USER_WIFI_ASA="ASA-GUEST"
+
+
+
+
+
+
+#connect "$username_wifi_casa" "$password_wifi_casa"
+
+#disconnect $NAME_CONTROLADOR_WIFI
+#list_connections
+
+
+# PARA LISTAR LOS WIFI.
+#sudo iwlist wlan0 scan | grep ESSID
+
+#echo `sudo iwlist "$NAME_CONTROLADOR_WIFI" scan | grep ESSID`
+
+
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --connect) connect ;;
+        --list-wifi) list_wifi;;
+        --asd) echo "asdasdasd";;
+        *) echo "Invalid flag"; exit 1;;
+    esac
+    shift
+done
+
+if [[ $# == 0 ]]; then
+    list_wifi
+fi

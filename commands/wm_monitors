@@ -1,0 +1,53 @@
+#!/bin/bash
+
+function list_monitors_connected {
+    for monitor_name in $(xrandr | grep " connected " | awk '{ print$1 }'); do
+        echo $monitor_name
+    done
+}
+
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --connected) list_monitors_connected ;;
+        --asd) echo "asdasdasd";;
+        *) echo "Invalid flag"; exit 1;;
+    esac
+    shift
+done
+
+
+
+
+
+
+#------------------------------------------------------------------------------
+#  - Renderizado
+#  TODO:
+#   1. Poner condicionales para tener varios monitores conectados con
+#   diferentes tamaños de monitor y que se acomode automaticamente.
+#------------------------------------------------------------------------------
+####################################################
+#                  Monitor Setting                 #
+####################################################
+#---------------------------------------------------
+#  - resolution
+#  - monitors
+#---------------------------------------------------
+second_connected=false
+
+for monitor_name in $(xrandr | grep " connected " | awk '{ print$1 }'); do
+    if [[ $monitor_name == "HDMI-0" ]]; then
+            second_connected=true
+    fi
+done
+
+if [[ $second_connected == true ]]; then
+    xrandr --output eDP-1-1 --primary --mode 1920x1080 --rotate normal --pos 1920x0
+    xrandr --output HDMI-0 --mode 1920x1080 --rotate normal --pos 0x0 --left-of eDP-1-1
+    bspc monitor eDP-1-1 -d 6 7 8 9 0
+    bspc monitor HDMI-0 -d 1 2 3 4 5
+else
+    xrandr --output eDP-1-1 --primary --mode 1920x1080 --rotate normal --pos 0x0
+    bspc monitor HDMI-1 -d 1 2 3 4 5
+fi

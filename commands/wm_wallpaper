@@ -26,7 +26,8 @@ while [[ $# -gt 0 ]]; do
     shift
 done
 
-
+# TODO: Esto se ejecuta siempre, debería solo ejecutarse
+# en caso que efectivamente se cambiara de wallpaper.
 if [[ -f $wall ]]; then
     set_wallpaper $wall
 fi

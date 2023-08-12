@@ -1,0 +1,26 @@
+#!/bin/python3
+
+import argparse
+import sys
+
+def main():
+    args = get_args()
+    imprimir(args)
+
+def get_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--text",
+        type = str,
+        default = "",
+        help = "Argumento de prueba"
+    )
+    args = parser.parse_args()
+    return args
+
+def imprimir(args):
+    textito = args.text
+    print(f"hello_world_{textito}")
+
+if __name__ == "__main__":
+    main()

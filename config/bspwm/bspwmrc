@@ -3,35 +3,10 @@
 # en caso de no estarlo lo inicia.
 pgrep -x sxhkd > /dev/null || sxhkd &
 
-#------------------------------------------------------------------------------
-#  - Renderizado
-#  TODO:
-#   1. Poner condicionales para tener varios monitores conectados con
-#   diferentes tamaños de monitor y que se acomode automaticamente.
-#------------------------------------------------------------------------------
-####################################################
-#                  Monitor Setting                 #
-####################################################
-#---------------------------------------------------
-#  - resolution
-#  - monitors
-#---------------------------------------------------
-second_connected=false
-for monitor_name in $(xrandr | grep " connected " | awk '{ print$1 }'); do
-    if [[ $monitor_name == "HDMI-0" ]]; then
-            second_connected=true
-    fi
-done
+# TODO: Poner condicional, si no está ya en latam, que lo ponga en latam, o lenguaje por defecto.
+setxkbmap -layout latam
 
-if [[ $second_connected == true ]]; then
-    xrandr --output eDP-1-1 --primary --mode 1920x1080 --rotate normal --pos 1920x0 \
-        --output HDMI-0 --mode 1920x1080 --rotate normal --pos 0x0 --left-of eDP-1-1
-    bspc monitor eDP-1-1 -d 6 7 8 9 0
-    bspc monitor HDMI-0 -d 1 2 3 4 5
-else
-    xrandr --output eDP-1-1 --primary --mode 1920x1080 --rotate normal --pos 1920x0
-    bspc monitor eDP-1-1 -d 1 2 3 4 5
-fi
+wm_monitors
 
 
 ####################################################
@@ -63,7 +38,7 @@ bspc rule -a Screenkey manage=off
 
 
 # Wallpapers (Elige el primero aleatoriamente).
-wallpaper -r
+wm_wallpaper -r
 
 # Launch polybar
 $HOME/.config/polybar/launch.sh
@@ -73,7 +48,7 @@ $HOME/.config/polybar/launch.sh
 picom --config $HOME/.config/picom/picom.conf &
 
 
-setxkbmap -layout latam
+
 
 
 # Ver q hace esto.

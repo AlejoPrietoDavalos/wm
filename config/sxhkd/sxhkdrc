@@ -82,7 +82,7 @@ XF86Audio{Raise,Lower,Mute}{Volume,Volume,_}
 # Parece que sxhkd flashea cuando bindeas Print, ver...
 #--------------------------------------
 Print + {_,super,super + alt} + {_,ctrl}
-    screenshot {--bbox,--win,-m} {_,--save}
+    wm_screenshot {--bbox,--win,-m} {_,--save}
 
 
 
@@ -191,9 +191,6 @@ super + ctrl + {Left,Down,Up,Right}
 
 
 #----------REVISAR ESTO----------
-#current_win=$(bspc query -D --d focused -m focused); \
-#bspc desktop -f "$current_win"
-#----------REVISAR ESTO----------
 #super + shift + {i,o,p}
 #    rofi -show {run,drun,window} -theme $HOME/rofi-collection/nord/nord.rasi
 #-------------basura------------------
@@ -231,23 +228,6 @@ super + ctrl + {Left,Down,Up,Right}
 #	bspc wm -h off; \
 #	bspc node {older,newer} -f; \
 #	bspc wm -h on
-
-
-###############
-# move/resize #
-###############
-# expand a window by moving one of its side outward
-#super + alt + {h,j,k,l}
-#       bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-
-# contract a window by moving one of its side inward
-#super + alt + shift + {h,j,k,l}
-#       bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
-
-
-
-
-
 
 #
 # state/flags
