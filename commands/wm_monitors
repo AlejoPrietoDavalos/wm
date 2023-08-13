@@ -1,25 +1,56 @@
 #!/bin/bash
 
-function list_monitors_connected {
-    for monitor_name in $(xrandr | grep " connected " | awk '{ print$1 }'); do
-        echo $monitor_name
+########################################################
+#                  Monitor Setting                     #
+########################################################
+#-------------------------------------------------------
+#  - MONITOR_1: El de notebook, o el principal de PC.
+#-------------------------------------------------------
+PERMUTAR_MONITORES=true
+RESOLUTION=1920x1080
+
+MONITOR_1="HDMI-1"
+MONITOR_2="eDP-1-1"
+POS_1=0x0
+POS_2=1920x0
+DESKTOPS_1=(1 2 3 4 5)
+DESKTOPS_2=(6 7 8 9 0)
+
+
+#################################################################
+#                       Monitor Functions                       #
+#################################################################
+#----------------------------------------------------------------
+#  - monitors_conn: Retorna lista con los monitores conecteados.
+#  - n_monitors_conn: Retorna el número de monitores conectados.
+#  - list_monitors: Imprime un resumen acerca de los monitores.
+#----------------------------------------------------------------
+function monitors_conn {
+    local monitors=()
+    for monitor_name in $(xrandr | grep " connected " | awk '{ print $1 }'); do
+        monitors+=("$monitor_name")
     done
+    echo ${monitors[@]}
 }
 
+function n_monitors_conn {
+    local monitors="$1"
+    echo "$(echo "$1" | wc -w)"
+}
 
-while [[ $# -gt 0 ]]; do
-    case "$1" in
-        --connected) list_monitors_connected ;;
-        --asd) echo "asdasdasd";;
-        *) echo "Invalid flag"; exit 1;;
-    esac
-    shift
-done
+function list_monitors {
+    local monitors="$1"
+    local n_monitors=$(n_monitors_conn $monitors)
+    echo "- n_monitors: $n_monitors"
+    echo ""
 
-
-
-
-
+    count=1
+    echo "- monitors:"
+    for monitor in $monitors; do
+        echo "$count.$monitor"
+        count=$((count+1))
+    done
+}
 
 #------------------------------------------------------------------------------
 #  - Renderizado
@@ -31,23 +62,56 @@ done
 #                  Monitor Setting                 #
 ####################################################
 #---------------------------------------------------
-#  - resolution
-#  - monitors
+#  - 
 #---------------------------------------------------
-second_connected=false
+function set_monitor {
+    local monitor=$1
+    local resolution=$2
+    local pos=$3
+    xrandr --output $monitor --primary --mode $resolution --rotate normal --pos $pos
+}
 
-for monitor_name in $(xrandr | grep " connected " | awk '{ print$1 }'); do
-    if [[ $monitor_name == "HDMI-0" ]]; then
-            second_connected=true
+function set_bspc_desktops {
+    # Se obtiene el primer argumento y se elimina.
+    local monitor=$1
+    shift
+
+    # Para poder generar una secuencia de monitores.
+    local desktops=($@)
+    bspc monitor $monitor -d ${desktops[@]} #"${desktops[@]}"
+}
+
+function set_bspc_monitor_conf {
+    # Se settean los monitores y desktops.
+    set_monitor $MONITOR_1 $RESOLUTION $POS_1
+    set_bspc_desktops $MONITOR_1 ${DESKTOPS_1[@]}
+    if [[ $n_monitors == 2 ]]; then
+        set_monitor $MONITOR_2 $RESOLUTION $POS_2
+        set_bspc_desktops $MONITOR_2 ${DESKTOPS_2[@]}
     fi
-done
+}
 
-if [[ $second_connected == true ]]; then
-    xrandr --output eDP-1-1 --primary --mode 1920x1080 --rotate normal --pos 1920x0
-    xrandr --output HDMI-0 --mode 1920x1080 --rotate normal --pos 0x0 --left-of eDP-1-1
-    bspc monitor eDP-1-1 -d 6 7 8 9 0
-    bspc monitor HDMI-0 -d 1 2 3 4 5
-else
-    xrandr --output eDP-1-1 --primary --mode 1920x1080 --rotate normal --pos 0x0
-    bspc monitor HDMI-1 -d 1 2 3 4 5
+monitors=$(monitors_conn)
+n_monitors=$(n_monitors_conn $monitors)
+
+
+
+
+# xrandr --output eDP-1-1 --primary --mode 1920x1080 --rotate normal --pos 1920x0
+# xrandr --output HDMI-0 --mode 1920x1080 --rotate normal --pos 0x0 --left-of eDP-1-1
+
+
+# Si no hay flag, mostrar información sobre los monitores.
+if [[ $# == 0 ]]; then
+    list_monitors $monitors $n_monitors
 fi
+
+# Se itera sobre cada flag.
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --set-desktops) set_bspc_monitor_conf;;
+        --asd) echo "asdasdasd";;
+        *) echo "Invalid flag"; exit 1;;
+    esac
+    shift
+done

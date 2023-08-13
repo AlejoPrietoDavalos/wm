@@ -6,7 +6,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 # TODO: Poner condicional, si no está ya en latam, que lo ponga en latam, o lenguaje por defecto.
 setxkbmap -layout latam
 
-wm_monitors
+wm_monitors --set-desktops
 
 
 ####################################################
