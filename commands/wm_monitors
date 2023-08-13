@@ -39,8 +39,8 @@ function n_monitors_conn {
 }
 
 function list_monitors {
-    local monitors="$1"
-    local n_monitors=$(n_monitors_conn $monitors)
+    local monitors=$1
+    local n_monitors=$2
     echo "- n_monitors: $n_monitors"
     echo ""
 
@@ -52,53 +52,45 @@ function list_monitors {
     done
 }
 
-#------------------------------------------------------------------------------
-#  - Renderizado
-#  TODO:
-#   1. Poner condicionales para tener varios monitores conectados con
-#   diferentes tamaños de monitor y que se acomode automaticamente.
-#------------------------------------------------------------------------------
-####################################################
-#                  Monitor Setting                 #
-####################################################
-#---------------------------------------------------
-#  - 
-#---------------------------------------------------
-function set_monitor {
+function set_monitor_1 {
     local monitor=$1
     local resolution=$2
     local pos=$3
     xrandr --output $monitor --primary --mode $resolution --rotate normal --pos $pos
 }
 
+# BUG: Creo que bugea el right-of, chequear.
+function set_monitor_2 {
+    local monitor_1=$1
+    local monitor_2=$2
+    local resolution=$3
+    local pos=$4
+    xrandr --output $monitor_2 --mode $resolution --rotate normal --pos $pos --right-of $monitor_1
+}
+
 function set_bspc_desktops {
     # Se obtiene el primer argumento y se elimina.
     local monitor=$1
     shift
-
-    # Para poder generar una secuencia de monitores.
+    # Todos los parámetros enviados son los diferentes desktops.
     local desktops=($@)
-    bspc monitor $monitor -d ${desktops[@]} #"${desktops[@]}"
+    bspc monitor $monitor -d ${desktops[@]}
 }
 
 function set_bspc_monitor_conf {
-    # Se settean los monitores y desktops.
-    set_monitor $MONITOR_1 $RESOLUTION $POS_1
+    local n_monitors=$1
+    
+    set_monitor_1 $MONITOR_1 $RESOLUTION $POS_1
     set_bspc_desktops $MONITOR_1 ${DESKTOPS_1[@]}
     if [[ $n_monitors == 2 ]]; then
-        set_monitor $MONITOR_2 $RESOLUTION $POS_2
+        set_monitor_2 $MONITOR_1 $MONITOR_2 $RESOLUTION $POS_2
         set_bspc_desktops $MONITOR_2 ${DESKTOPS_2[@]}
     fi
 }
 
+
 monitors=$(monitors_conn)
 n_monitors=$(n_monitors_conn $monitors)
-
-
-
-
-# xrandr --output eDP-1-1 --primary --mode 1920x1080 --rotate normal --pos 1920x0
-# xrandr --output HDMI-0 --mode 1920x1080 --rotate normal --pos 0x0 --left-of eDP-1-1
 
 
 # Si no hay flag, mostrar información sobre los monitores.
@@ -109,8 +101,7 @@ fi
 # Se itera sobre cada flag.
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --set-desktops) set_bspc_monitor_conf;;
-        --asd) echo "asdasdasd";;
+        --set-desktops) set_bspc_monitor_conf $n_monitors;;
         *) echo "Invalid flag"; exit 1;;
     esac
     shift

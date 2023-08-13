@@ -1,0 +1,3 @@
+#!/bin/bash
+wm_monitors --set-desktops
+setxkbmap -layout latam
