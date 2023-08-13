@@ -3,23 +3,11 @@
 
 function set_wallpaper { feh --bg-fill $1; }
 
-#var=($(ls -d `./*`))
-#for v in @var; then
-#    echo $v
-#done
-
-#-----> Ver como hacer funcionar este código
-#function get_current_wall {
-#    return $(cat "$HOME/.fehbg" | tr "'" '\n' | grep home | head -n 1)
-#}
-
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        # Setea un wallpaper aleatorio de entre los disponibles.
         -r) wall=$(ls -d  $HOME/images/wallpapers/* | shuf -n 1);;
         -n) echo "set next wallpaper";;
-        -g) echo "asd";;
         -p) echo "set prev wallpaper";;
         *) echo "Invalid flag"; exit 1;;
     esac

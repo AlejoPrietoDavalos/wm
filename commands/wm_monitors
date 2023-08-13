@@ -4,17 +4,19 @@
 #                  Monitor Setting                     #
 ########################################################
 #-------------------------------------------------------
-#  - MONITOR_1: El de notebook, o el principal de PC.
+#  - MONITOR_i: Monitor en la i-ésima posición de
+#               izquierda a derecha en orden ascendente.
+#  - DESKTOPS_i: Desktops asignados al i-ésimo monitor.
+#  - POS_i: 
 #-------------------------------------------------------
-PERMUTAR_MONITORES=true
-RESOLUTION=1920x1080
-
 MONITOR_1="HDMI-1"
 MONITOR_2="eDP-1-1"
-POS_1=0x0
-POS_2=1920x0
 DESKTOPS_1=(1 2 3 4 5)
 DESKTOPS_2=(6 7 8 9 0)
+
+POS_1=0x0
+POS_2=1920x0
+RESOLUTION=1920x1080
 
 
 #################################################################
@@ -88,7 +90,7 @@ function set_bspc_monitor_conf {
     fi
 }
 
-
+# TODO: Se podría hacer un chequeo de que estén bien los monitores.
 monitors=$(monitors_conn)
 n_monitors=$(n_monitors_conn $monitors)
 
