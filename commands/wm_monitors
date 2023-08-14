@@ -9,8 +9,8 @@
 #  - DESKTOPS_i: Desktops asignados al i-ésimo monitor.
 #  - POS_i: 
 #-------------------------------------------------------
-MONITOR_1="HDMI-1"
-MONITOR_2="eDP-1-1"
+MONITOR_1="eDP-1-1"
+MONITOR_2="HDMI-0"
 DESKTOPS_1=(1 2 3 4 5)
 DESKTOPS_2=(6 7 8 9 0)
 
@@ -28,11 +28,12 @@ RESOLUTION=1920x1080
 #  - list_monitors: Imprime un resumen acerca de los monitores.
 #----------------------------------------------------------------
 function monitors_conn {
-    local monitors=()
+    #local monitors=()
     for monitor_name in $(xrandr | grep " connected " | awk '{ print $1 }'); do
-        monitors+=("$monitor_name")
+        echo $monitor_name
+        #monitors+=("$monitor_name")
     done
-    echo ${monitors[@]}
+    #echo ${monitors[@]}
 }
 
 function n_monitors_conn {
@@ -54,21 +55,9 @@ function list_monitors {
     done
 }
 
-function set_monitor_1 {
-    local monitor=$1
-    local resolution=$2
-    local pos=$3
-    xrandr --output $monitor --primary --mode $resolution --rotate normal --pos $pos
-}
-
 # BUG: Creo que bugea el right-of, chequear.
-function set_monitor_2 {
-    local monitor_1=$1
-    local monitor_2=$2
-    local resolution=$3
-    local pos=$4
-    xrandr --output $monitor_2 --mode $resolution --rotate normal --pos $pos --right-of $monitor_1
-}
+function set_monitor_1 { xrandr --output $MONITOR_1 --primary --mode $RESOLUTION --rotate normal --pos $1; }
+function set_monitor_2 { xrandr --output $MONITOR_2 --mode $RESOLUTION --rotate normal --pos $POS_2 --left-of $MONITOR_1; }
 
 function set_bspc_desktops {
     # Se obtiene el primer argumento y se elimina.
@@ -82,23 +71,28 @@ function set_bspc_desktops {
 function set_bspc_monitor_conf {
     local n_monitors=$1
     
-    set_monitor_1 $MONITOR_1 $RESOLUTION $POS_1
-    set_bspc_desktops $MONITOR_1 ${DESKTOPS_1[@]}
+    if [[ $n_monitors == 1 ]]; then
+        set_monitor_1 $POS_1
+        set_bspc_desktops $MONITOR_1 ${DESKTOPS_1[@]}
+    fi
     if [[ $n_monitors == 2 ]]; then
-        set_monitor_2 $MONITOR_1 $MONITOR_2 $RESOLUTION $POS_2
-        set_bspc_desktops $MONITOR_2 ${DESKTOPS_2[@]}
+        set_monitor_1 $POS_2
+        set_monitor_2 $POS_1
+        set_bspc_desktops $MONITOR_1 ${DESKTOPS_2[@]}
+        set_bspc_desktops $MONITOR_2 ${DESKTOPS_1[@]}
     fi
 }
 
 # TODO: Se podría hacer un chequeo de que estén bien los monitores.
-monitors=$(monitors_conn)
-n_monitors=$(n_monitors_conn $monitors)
-
+#monitors=$(monitors_conn)
+#echo $monitors | tr " " "\n"
+#n_monitors=$(n_monitors_conn $monitors)
+n_monitors=2
 
 # Si no hay flag, mostrar información sobre los monitores.
-if [[ $# == 0 ]]; then
-    list_monitors $monitors $n_monitors
-fi
+#if [[ $# == 0 ]]; then
+#    list_monitors $monitors $n_monitors
+#fi
 
 # Se itera sobre cada flag.
 while [[ $# -gt 0 ]]; do

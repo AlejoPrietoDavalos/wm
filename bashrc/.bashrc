@@ -1,5 +1,7 @@
 #!/bin/bash
 
+setxkbmap -layout latam
+
 path_wm=$HOME/.scripts/wm
 path_bashrc=$path_wm/bashrc
 

@@ -95,3 +95,13 @@ sudo apt install iwd
 https://stackoverflow.com/questions/8884188/how-to-read-and-write-ini-file-with-python3
 recordar el .secret
 Hacer la interfaz de linea de comandos para el wifi, bluethoot y toda esa gilada
+
+
+#----Para los drivers de la GPU---
+# Primero instalar los drivers privativos de NVIDIA.
+sudo software-properties-gtk
+# Settear la GPU para que tenga mayor rendimiento y no On-Demand.
+sudo nvidia-settings
+
+
+
