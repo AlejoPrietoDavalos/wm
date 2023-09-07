@@ -7,16 +7,25 @@
 #  - MONITOR_i: Monitor en la i-ésima posición de
 #               izquierda a derecha en orden ascendente.
 #  - DESKTOPS_i: Desktops asignados al i-ésimo monitor.
-#  - POS_i: 
+#  - POS_i:
 #-------------------------------------------------------
+MON1_RIGHT=false
 MONITOR_1="eDP-1-1"
 MONITOR_2="HDMI-0"
-DESKTOPS_1=(1 2 3 4 5)
-DESKTOPS_2=(6 7 8 9 0)
+DESKS_1to5=(1 2 3 4 5)
+DESKS_6to0=(6 7 8 9 0)
 
 POS_1=0x0
 POS_2=1920x0
 RESOLUTION=1920x1080
+
+# Posición del monitor 2 respecto de 1.
+if [[ $MON1_RIGHT ]]; then
+    right_or_left_of="--left-of"
+else
+    right_or_left_of="--right-of"
+fi
+
 
 
 #################################################################
@@ -57,7 +66,7 @@ function list_monitors {
 
 # BUG: Creo que bugea el right-of, chequear.
 function set_monitor_1 { xrandr --output $MONITOR_1 --primary --mode $RESOLUTION --rotate normal --pos $1; }
-function set_monitor_2 { xrandr --output $MONITOR_2 --mode $RESOLUTION --rotate normal --pos $POS_2 --left-of $MONITOR_1; }
+function set_monitor_2 { xrandr --output $MONITOR_2 --mode $RESOLUTION --rotate normal --pos $POS_2 $right_or_left_of $MONITOR_1; }
 
 function set_bspc_desktops {
     # Se obtiene el primer argumento y se elimina.
@@ -73,13 +82,21 @@ function set_bspc_monitor_conf {
     
     if [[ $n_monitors == 1 ]]; then
         set_monitor_1 $POS_1
-        set_bspc_desktops $MONITOR_1 ${DESKTOPS_1[@]}
+        set_bspc_desktops $MONITOR_1 ${DESKS_1to5[@]}
     fi
     if [[ $n_monitors == 2 ]]; then
-        set_monitor_1 $POS_2
-        set_monitor_2 $POS_1
-        set_bspc_desktops $MONITOR_1 ${DESKTOPS_2[@]}
-        set_bspc_desktops $MONITOR_2 ${DESKTOPS_1[@]}
+        
+        if [[ $MON1_RIGHT ]]; then
+            set_monitor_1 $POS_1
+            set_monitor_2 $POS_2
+            set_bspc_desktops $MONITOR_1 ${DESKS_6to0[@]}
+            set_bspc_desktops $MONITOR_2 ${DESKS_1to5[@]}
+        else
+            set_monitor_1 $POS_2
+            set_monitor_2 $POS_1
+            set_bspc_desktops $MONITOR_1 ${DESKS_1to5[@]}
+            set_bspc_desktops $MONITOR_2 ${DESKS_6to0[@]}
+        fi
     fi
 }
 
