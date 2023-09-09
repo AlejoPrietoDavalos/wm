@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# imprime el porcentaje de batería
+function battery_porc { upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep percentage | awk '{print $2}'; }
+echo $(battery_porc)

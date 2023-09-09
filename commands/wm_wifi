@@ -15,7 +15,8 @@ USER_WIFI_ASA="ASA-GUEST"
 
 
 
-
+# Para listar los wifi y tamaño de la señal.
+# nmcli dev wifi
 
 #connect "$username_wifi_casa" "$password_wifi_casa"
 
