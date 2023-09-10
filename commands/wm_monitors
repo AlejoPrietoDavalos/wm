@@ -85,7 +85,6 @@ function set_bspc_monitor_conf {
         set_bspc_desktops $MONITOR_1 ${DESKS_1to5[@]}
     fi
     if [[ $n_monitors == 2 ]]; then
-        
         if [[ $MON1_RIGHT ]]; then
             set_monitor_1 $POS_1
             set_monitor_2 $POS_2
@@ -104,7 +103,9 @@ function set_bspc_monitor_conf {
 #monitors=$(monitors_conn)
 #echo $monitors | tr " " "\n"
 #n_monitors=$(n_monitors_conn $monitors)
-n_monitors=2
+
+# Se calculan el número de monitores conectados.
+n_monitors=$(xrandr | grep " connected " | wc -l)
 
 # Si no hay flag, mostrar información sobre los monitores.
 #if [[ $# == 0 ]]; then
