@@ -26,6 +26,8 @@ else
     right_or_left_of="--right-of"
 fi
 
+# Se calculan el número de monitores conectados.
+n_monitors=$(xrandr | grep " connected " | wc -l)
 
 
 #################################################################
@@ -37,12 +39,9 @@ fi
 #  - list_monitors: Imprime un resumen acerca de los monitores.
 #----------------------------------------------------------------
 function monitors_conn {
-    #local monitors=()
     for monitor_name in $(xrandr | grep " connected " | awk '{ print $1 }'); do
         echo $monitor_name
-        #monitors+=("$monitor_name")
     done
-    #echo ${monitors[@]}
 }
 
 function n_monitors_conn {
@@ -99,18 +98,15 @@ function set_bspc_monitor_conf {
     fi
 }
 
-# TODO: Se podría hacer un chequeo de que estén bien los monitores.
-#monitors=$(monitors_conn)
-#echo $monitors | tr " " "\n"
-#n_monitors=$(n_monitors_conn $monitors)
 
-# Se calculan el número de monitores conectados.
-n_monitors=$(xrandr | grep " connected " | wc -l)
 
-# Si no hay flag, mostrar información sobre los monitores.
-#if [[ $# == 0 ]]; then
-#    list_monitors $monitors $n_monitors
-#fi
+
+
+# Si no hay flags, mostrar información sobre los monitores.
+# TODO: Poner esto en el help, y mejorar, ahora solo muestra el nombre de los monitores.
+if [[ $# == 0 ]]; then
+    monitors_conn
+fi
 
 # Se itera sobre cada flag.
 while [[ $# -gt 0 ]]; do
