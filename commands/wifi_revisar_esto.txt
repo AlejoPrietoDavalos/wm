@@ -1,0 +1,12 @@
+iwconfig
+
+pepocho@deepnet:~$ sudo iwlist wlo1 scan | grep ESSID
+                    ESSID:"Personal Wifi Zone"
+                    ESSID:"HENRRY 5.8"
+                    ESSID:"Fibertel WiFi436 5.8GHz"
+                    ESSID:"HENRRY 2.4"
+                    ESSID:"Fibertel WiFi877 2.4GHz"
+                    ESSID:"Fibertel WiFi436 2.4GHz"
+                    ESSID:"Personal Wifi Zone"
+                    ESSID:"Fibertel WiFi877 5.8GHz"
+                    ESSID:"Telecentro-5d54"

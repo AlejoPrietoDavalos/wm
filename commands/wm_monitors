@@ -9,7 +9,7 @@
 #  - DESKTOPS_i: Desktops asignados al i-ésimo monitor.
 #  - POS_i:
 #-------------------------------------------------------
-MON1_RIGHT=false
+MON1_RIGHT=true
 MONITOR_1="eDP-1-1"
 MONITOR_2="HDMI-0"
 DESKS_1to5=(1 2 3 4 5)

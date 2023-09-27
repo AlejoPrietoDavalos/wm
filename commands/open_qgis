@@ -1,0 +1,6 @@
+#!/bin/bash
+
+nautilus $1 &
+qgis &
+
+

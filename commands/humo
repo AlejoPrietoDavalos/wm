@@ -1,0 +1,7 @@
+#!/bin/bash
+
+kitty cmatrix &
+kitty cacafire &
+kitty tree / &
+disown .
+kill 1
