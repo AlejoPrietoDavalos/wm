@@ -1,3 +1,32 @@
+### Quickstart
+
+Si no tenés agregado el usuario al grupo de sudoers.
+```bash
+su root
+sudo nano /etc/sudoers
+
+# Agregar la siguiente línea debajo de:
+#root    ALL=(ALL:ALL) ALL
+#<<username>>    ALL=(ALL:ALL) ALL
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### links:
 - https://www.nerdfonts.com/ | https://www.nerdfonts.com/cheat-sheet
 - https://www.flaticon.es/
