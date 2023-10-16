@@ -13,9 +13,9 @@ export PATH=$PATH:$path_wm/commands
 #  - alias
 #  - secret
 #---------------------------------------------------
-source $path_bashrc/.profile
-source $path_bashrc/.alias
-source $path_wm/.secret/.tkn
+#source $path_bashrc/.profile
+#source $path_bashrc/.alias
+#source $path_wm/.secret/.tkn
 
 
 
