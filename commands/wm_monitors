@@ -10,8 +10,8 @@
 #  - POS_i:
 #-------------------------------------------------------
 MON1_RIGHT=true
-MONITOR_1="eDP-1-1"
-MONITOR_2="HDMI-0"
+MONITOR_1="XWAYLAND0"
+MONITOR_2="XWAYLAND1"
 DESKS_1to5=(1 2 3 4 5)
 DESKS_6to0=(6 7 8 9 0)
 
