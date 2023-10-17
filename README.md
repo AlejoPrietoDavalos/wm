@@ -1,5 +1,9 @@
 ## Quickstart
 
+#TODO: Poner un crontab con el update de ArchLinux
+
+
+
 #### Instalar todos los paquetes.
 ```bash
 chmod +x pacman_install.sh
