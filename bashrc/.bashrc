@@ -2,7 +2,7 @@
 
 setxkbmap -layout latam
 
-path_wm=$HOME/.scripts/wm
+path_wm=$HOME/documentos/wm
 path_bashrc=$path_wm/bashrc
 
 #----------Commands----------

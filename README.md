@@ -1,26 +1,23 @@
-### Quickstart
-Deshabilitar Wayland, y usar X11 por defecto.
-Configuración para iniciar siempre en X11:
+## Quickstart
 
-Si prefieres que GNOME siempre inicie con X11 por defecto, puedes seguir estos pasos:
+#### Instalar todos los paquetes.
+```bash
+chmod +x pacman_install.sh
+./pacman_install.sh
+```
 
+
+
+
+
+
+
+
+
+#### Para compartir pantalla
 Edita o crea el archivo /etc/gdm3/daemon.conf.
 Añade o descomenta la línea WaylandEnable=false.
 Esto deshabilitará Wayland y GNOME usará X11 por defecto.
-
-
-Instalar bspwm y sxhkd
-```bash
-sudo apt install bspwm sxhkd polybar kitty rofi dmenu feh picom
-sudo apt install cmatrix figlet scrot
-```
-mkdir -p ~/.config/bspwm
-mkdir -p ~/.config/sxhkd
-mkdir -p ~/.config/polybar
-mkdir -p ~/.config/kitty
-
-
-
 
 
 
