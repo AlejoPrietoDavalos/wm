@@ -4,18 +4,23 @@
 function set_wallpaper { feh --bg-fill $1; }
 
 
-while [[ $# -gt 0 ]]; do
-    case "$1" in
-        -r) wall=$(ls -d  $HOME/images/wallpapers/* | shuf -n 1);;
-        -n) echo "set next wallpaper";;
-        -p) echo "set prev wallpaper";;
-        *) echo "Invalid flag"; exit 1;;
-    esac
-    shift
-done
+#while [[ $# -gt 0 ]]; do
+#    case "$1" in
+#        -r) wall=$(ls -d  $HOME/images/wallpapers/* | shuf -n 1);;
+#        -n) echo "set next wallpaper";;
+#        -p) echo "set prev wallpaper";;
+#        *) echo "Invalid flag"; exit 1;;
+#    esac
+#    shift
+#done
 
 # TODO: Esto se ejecuta siempre, debería solo ejecutarse
 # en caso que efectivamente se cambiara de wallpaper.
-if [[ -f $wall ]]; then
-    set_wallpaper $wall
-fi
+#if [[ -f $wall ]]; then
+
+
+#-----> Random Wallpaper.
+wall=$(ls -d  $HOME/images/wallpapers/* | shuf -n 1)
+set_wallpaper $wall
+
+#fi

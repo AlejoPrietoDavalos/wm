@@ -4,115 +4,21 @@
 #                  Monitor Setting                     #
 ########################################################
 #-------------------------------------------------------
-#  - MONITOR_i: Monitor en la i-ésima posición de
-#               izquierda a derecha en orden ascendente.
-#  - DESKTOPS_i: Desktops asignados al i-ésimo monitor.
-#  - POS_i:
+#DEPRECADO:  - MONITOR_i: Monitor en la i-ésima posición de
+#DEPRECADO:               izquierda a derecha en orden ascendente.
+#DEPRECADO:  - DESKTOPS_i: Desktops asignados al i-ésimo monitor.
+#DEPRECADO:  - POS_i:
 #-------------------------------------------------------
-MON1_RIGHT=true
-MONITOR_1="XWAYLAND0"
-MONITOR_2="XWAYLAND1"
-DESKS_1to5=(1 2 3 4 5)
-DESKS_6to0=(6 7 8 9 0)
+MONITOR_1="HDMI-0"
+MONITOR_2="DP-5"
 
 POS_1=0x0
 POS_2=1920x0
 RESOLUTION=1920x1080
 
-# Posición del monitor 2 respecto de 1.
-if [[ $MON1_RIGHT ]]; then
-    right_or_left_of="--left-of"
-else
-    right_or_left_of="--right-of"
-fi
 
-# Se calculan el número de monitores conectados.
-n_monitors=$(xrandr | grep " connected " | wc -l)
+xrandr --output $MONITOR_1 --primary --mode $RESOLUTION --rotate normal --pos $POS_1
+xrandr --output $MONITOR_2 --mode $RESOLUTION --rotate normal --pos $POS_2 --right-of $MONITOR_1
 
-
-#################################################################
-#                       Monitor Functions                       #
-#################################################################
-#----------------------------------------------------------------
-#  - monitors_conn: Retorna lista con los monitores conecteados.
-#  - n_monitors_conn: Retorna el número de monitores conectados.
-#  - list_monitors: Imprime un resumen acerca de los monitores.
-#----------------------------------------------------------------
-function monitors_conn {
-    for monitor_name in $(xrandr | grep " connected " | awk '{ print $1 }'); do
-        echo $monitor_name
-    done
-}
-
-function n_monitors_conn {
-    local monitors="$1"
-    echo "$(echo "$1" | wc -w)"
-}
-
-function list_monitors {
-    local monitors=$1
-    local n_monitors=$2
-    echo "- n_monitors: $n_monitors"
-    echo ""
-
-    count=1
-    echo "- monitors:"
-    for monitor in $monitors; do
-        echo "$count.$monitor"
-        count=$((count+1))
-    done
-}
-
-# BUG: Creo que bugea el right-of, chequear.
-function set_monitor_1 { xrandr --output $MONITOR_1 --primary --mode $RESOLUTION --rotate normal --pos $1; }
-function set_monitor_2 { xrandr --output $MONITOR_2 --mode $RESOLUTION --rotate normal --pos $POS_2 $right_or_left_of $MONITOR_1; }
-
-function set_bspc_desktops {
-    # Se obtiene el primer argumento y se elimina.
-    local monitor=$1
-    shift
-    # Todos los parámetros enviados son los diferentes desktops.
-    local desktops=($@)
-    bspc monitor $monitor -d ${desktops[@]}
-}
-
-function set_bspc_monitor_conf {
-    local n_monitors=$1
-    
-    if [[ $n_monitors == 1 ]]; then
-        set_monitor_1 $POS_1
-        set_bspc_desktops $MONITOR_1 ${DESKS_1to5[@]}
-    fi
-    if [[ $n_monitors == 2 ]]; then
-        if [[ $MON1_RIGHT ]]; then
-            set_monitor_1 $POS_1
-            set_monitor_2 $POS_2
-            set_bspc_desktops $MONITOR_1 ${DESKS_6to0[@]}
-            set_bspc_desktops $MONITOR_2 ${DESKS_1to5[@]}
-        else
-            set_monitor_1 $POS_2
-            set_monitor_2 $POS_1
-            set_bspc_desktops $MONITOR_1 ${DESKS_1to5[@]}
-            set_bspc_desktops $MONITOR_2 ${DESKS_6to0[@]}
-        fi
-    fi
-}
-
-
-
-
-
-# Si no hay flags, mostrar información sobre los monitores.
-# TODO: Poner esto en el help, y mejorar, ahora solo muestra el nombre de los monitores.
-if [[ $# == 0 ]]; then
-    monitors_conn
-fi
-
-# Se itera sobre cada flag.
-while [[ $# -gt 0 ]]; do
-    case "$1" in
-        --set-desktops) set_bspc_monitor_conf $n_monitors;;
-        *) echo "Invalid flag"; exit 1;;
-    esac
-    shift
-done
+bspc monitor $MONITOR_1 -d 1 2 3 4 5
+bspc monitor $MONITOR_2 -d 6 7 8 9 0

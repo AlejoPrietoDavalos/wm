@@ -4,9 +4,9 @@
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 # TODO: Poner condicional, si no está ya en latam, que lo ponga en latam, o lenguaje por defecto.
-setxkbmap -layout latam
+#setxkbmap -layout latam
 
-wm_monitors --set-desktops
+wm_monitors
 
 
 ####################################################
@@ -30,11 +30,11 @@ bspc config gapless_monocle      true
 
 # Abrir spotify en tal ventana, mismo discord y whatsapp.
 # Ver de como crear un monitor invisible, y que se pueda switchear entre monitores.
-bspc rule -a Gimp desktop='^8' state=floating follow=on
-bspc rule -a Chromium desktop='^2'
-bspc rule -a mplayer2 state=floating
-bspc rule -a Kupfer.py focus=on
-bspc rule -a Screenkey manage=off
+#bspc rule -a Gimp desktop='^8' state=floating follow=on
+#bspc rule -a Chromium desktop='^2'
+#bspc rule -a mplayer2 state=floating
+#bspc rule -a Kupfer.py focus=on
+#bspc rule -a Screenkey manage=off
 
 
 # Wallpapers (Elige el primero aleatoriamente).
@@ -46,7 +46,7 @@ $HOME/.config/polybar/launch.sh
 
 # PICOM
 picom --config $HOME/.config/picom/picom.conf &
-
+#picom -b
 
 
 
@@ -55,7 +55,7 @@ picom --config $HOME/.config/picom/picom.conf &
 #xsetroot -cursor_name left_ptr &
 
 
-if [[ $(xdg-settings get default-web-browser) != brave-browser.desktop ]]; then
-    xdg-settings set default-web-browser brave-browser.desktop
-fi
+#if [[ $(xdg-settings get default-web-browser) != brave-browser.desktop ]]; then
+#    xdg-settings set default-web-browser brave-browser.desktop
+#fi
 
