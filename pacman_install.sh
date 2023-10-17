@@ -1,9 +1,8 @@
 #!/bin/bash
 
-#sudo pacman -S htop cmatrix discord spotify-launcher ntfs-3g pulseaudio
+#sudo pacman -S figlet htop cmatrix discord spotify-launcher ntfs-3g pulseaudio
 #sudo pacman -S nano git python3 bspwm sxhkd polybar dmenu rofi picom feh scrot kitty firefox
 #sudo pacman -S xorg xorg-xinit xorg-xserver xorg-xrandr lightdm lightdm-gtk-greeter
-#sudo pacman -S lightdm lightdm-gtk-greeter
 
 
 # Dentro de /etc/pacman.conf descomentar Include = /etc/pacmand.d/mirrorlist.
