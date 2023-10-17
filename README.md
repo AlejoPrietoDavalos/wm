@@ -11,6 +11,8 @@ chmod +x pacman_install.sh
 ```
 
 
+#### Instalar  snap.
+# https://snapcraft.io/install/brave/arch
 
 
 
