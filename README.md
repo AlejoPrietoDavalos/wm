@@ -1,4 +1,6 @@
 ## Quickstart
+# Ver xclip para portapapeles.
+
 
 #TODO: Poner un crontab con el update de ArchLinux
 
@@ -67,20 +69,7 @@ sudo nano /etc/sudoers
 
 
 
-# Instalar
-~~~bash
-# xset
-sudo apt-get install x11-xserver-utils
-
-# scrot (screenshots)
-sudo apt-get install scrot
-
-# xclip (portapapeles)
-sudo apt install xclip
-~~~
-
-
-# TODO
+TODO
 - Poner un boton en la polybar para cambiar el wallpaper, que al darle click salga una lista desplegable con las imagenes dentro de $WALLPAPERS y te deje elegir una, llame al script setear wallpaper.
 
 
