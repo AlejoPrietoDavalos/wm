@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#sudo pacman -S python-psutil
+#sudo pacman -S xclip
 #sudo pacman -S figlet htop cmatrix discord spotify-launcher ntfs-3g pulseaudio
 #sudo pacman -S nano git python3 bspwm sxhkd polybar dmenu rofi picom feh scrot kitty firefox
 #sudo pacman -S xorg xorg-xinit xorg-xserver xorg-xrandr lightdm lightdm-gtk-greeter

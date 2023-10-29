@@ -8,6 +8,7 @@ shutil.copy2(path_bashrc, Path.home() / ".bashrc")
 path_config = Path("config")
 path_dotfiles = Path.home() / ".config"
 
+
 for p in path_config.iterdir():
     folder_name = p.stem
     path_folder_out = path_dotfiles / folder_name
@@ -15,3 +16,8 @@ for p in path_config.iterdir():
 
     for p_file in p.iterdir():
         shutil.copy2(p_file, path_folder_out / p_file.name)
+
+
+# Copiamos los ficheros de fuente.
+import os
+os.system("sudo cp fonts/*.ttf /usr/local/share/fonts")
